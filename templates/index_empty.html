@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block main %}
+    <h1>Welcome, {{ username }}!</h1>
+
+    {% if not budget %}
+    <h3>Your Budget is Not Set!</h3>
+    <h5>Please set budget at "Budget"</h5>
+
+    {% elif not spendings_db %}
+    <h3>You currently have no spendings.</h3>
+    <h5>Please add spending at "Add Spendings"</h5>
+
+    {% endif %}
+{% endblock %}

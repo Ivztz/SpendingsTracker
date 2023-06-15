@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block main %}
+    <h1>Spendings Summary</h1>
+
+    <div class="pie-chart">
+        <img src="../static/summary_{{ user_id }}.png" alt="spendings-summary">
+    </div>
+
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category, amount in spendings.items() %}
+            <tr>
+                <td>{{ category }}</td>
+                <td>{{ amount | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="1">Total</th>
+                <td>{{ total | usd }}</td>
+            </tr>
+            {% if remaining >= 0 %}
+            <tr>
+                <th scope="1">Remaining Budget</th>
+                <td>{{ remaining | usd }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <th scope="1">Remaining Budget</th>
+                <td>- {{ -(remaining) | usd }}</td>
+            </tr>
+            {% endif %}
+        </tfoot>
+    </table>
+{% endblock %}

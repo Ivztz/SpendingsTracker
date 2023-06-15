@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Budget
+{% endblock %}
+
+{% block main %}
+    <h3>Your Budget: {{ budget | usd }}</h3>
+    <p></p>
+    <form action="/budget" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="budget" name="budget" placeholder="Enter a new budget" type="number" min="0" step="any">
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}

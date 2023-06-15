@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<h3>Spendings History</h3>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for spending in spendings %}
+            <tr>
+                <td>{{ spending[1] }}</td>
+                <td>{{ spending[2] | usd }}</td>
+                <td>{{ spending[3] }}</td>
+                <td>
+                    <form action="/history" method="post">
+                        <input id="spending_id" name="spending_id" type="hidden" value="{{ spending[0] }}">
+                        <button class="btn btn-primary" type="submit" name="delete" value="{{ spending[0] }}" formmethod="post">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
